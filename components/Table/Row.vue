@@ -7,16 +7,14 @@
       v-for="(user, userIndex) in infoUser"
       :key="`table-row__cell--${userIndex}`"
       class="table-row__cell"
-    >
-      {{ user }}
-    </TableCell>
+      :usersInfo="user"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { User } from "@/interfaces/user";
 import { PropType } from "vue";
-import { combinator } from "postcss-selector-parser";
 
 const props = defineProps({
   user: {
@@ -27,10 +25,19 @@ const props = defineProps({
 
 const infoUser = computed(() => {
   return [
-    props.user?.name,
-    props.user?.email,
-    props.user?.company.name,
-    props.user?.address.city,
+    {
+      title: props.user?.name,
+      link: `/user/${props.user?.id}`,
+    },
+    {
+      title: props.user?.email,
+    },
+    {
+      title: props.user?.company.name,
+    },
+    {
+      title: props.user?.address.city,
+    },
   ];
 });
 </script>

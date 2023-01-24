@@ -1,3 +1,8 @@
+export interface UserName {
+  title: string;
+  link?: string;
+}
+
 export interface UserCompany {
   name: string;
   catchPhrase: string;
